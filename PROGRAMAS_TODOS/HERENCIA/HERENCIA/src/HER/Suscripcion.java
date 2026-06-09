@@ -8,7 +8,9 @@ public abstract class Suscripcion implements Iker {
 	private int contraseña;
 	private LocalDate fechaFinal;
 	private boolean conectado;
-	protected int numeroPeli;
+	protected static int totalPelis;
+	protected static int costeExtra;
+	protected static double totalRecaudado;
 
 	public Suscripcion(String mail, int contraseña, LocalDate fechaSuscrito) {
 		super();
@@ -16,6 +18,18 @@ public abstract class Suscripcion implements Iker {
 		this.contraseña = contraseña;
 		this.fechaFinal = fechaSuscrito;
 		conectado = false;
+	}
+
+	public static int getTotalPelis() {
+		return totalPelis - (totalPelis - costeExtra);
+	}
+
+	public static int getCosteExtra() {
+		return costeExtra;
+	}
+
+	public static double getTotalRecaudado() {
+		return totalRecaudado;
 	}
 
 	public boolean isConectado() {
@@ -52,8 +66,8 @@ public abstract class Suscripcion implements Iker {
 
 	@Override
 	public String toString() {
-		return "Suscripcion [mail=" + mail + ", contraseña=" + contraseña + ", fechaSuscrito=" + fechaFinal
-				+ ", conectado=" + conectado + "]";
+		return "Suscripcion  mail=" + mail + ", contraseña=" + contraseña + ", fechaSuscrito=" + fechaFinal
+				+ ", conectado=" + conectado+"\n";
 	}
 
 	public abstract void verPelicula();
@@ -89,6 +103,4 @@ public abstract class Suscripcion implements Iker {
 		return Objects.equals(mail, other.mail);
 	}
 
-	
-	
 }
