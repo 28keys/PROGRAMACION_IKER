@@ -1,11 +1,12 @@
 package HER;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Suscripcion implements Iker {
 	private String mail;
 	private int contraseña;
-	private LocalDate fechaSuscrito;
+	private LocalDate fechaFinal;
 	private boolean conectado;
 	protected int numeroPeli;
 
@@ -13,7 +14,7 @@ public abstract class Suscripcion implements Iker {
 		super();
 		this.mail = mail;
 		this.contraseña = contraseña;
-		this.fechaSuscrito = fechaSuscrito;
+		this.fechaFinal = fechaSuscrito;
 		conectado = false;
 	}
 
@@ -41,17 +42,17 @@ public abstract class Suscripcion implements Iker {
 		this.contraseña = contraseña;
 	}
 
-	public LocalDate getFechaSuscrito() {
-		return fechaSuscrito;
+	public LocalDate getFechaFinal() {
+		return fechaFinal;
 	}
 
-	public void setFechaSuscrito(LocalDate fechaSuscrito) {
-		this.fechaSuscrito = fechaSuscrito;
+	public void setFechaFinal(LocalDate fechaSuscrito) {
+		this.fechaFinal = fechaSuscrito;
 	}
 
 	@Override
 	public String toString() {
-		return "Suscripcion [mail=" + mail + ", contraseña=" + contraseña + ", fechaSuscrito=" + fechaSuscrito
+		return "Suscripcion [mail=" + mail + ", contraseña=" + contraseña + ", fechaSuscrito=" + fechaFinal
 				+ ", conectado=" + conectado + "]";
 	}
 
@@ -71,4 +72,23 @@ public abstract class Suscripcion implements Iker {
 		return conectado;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(mail);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Suscripcion other = (Suscripcion) obj;
+		return Objects.equals(mail, other.mail);
+	}
+
+	
+	
 }
