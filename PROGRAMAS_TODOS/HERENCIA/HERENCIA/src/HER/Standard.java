@@ -13,6 +13,8 @@ public class Standard extends Suscripcion implements Iker {
 		super(mail, contraseña, fechaSuscrito);
 		
 	}
+	
+	
 
 	public static void añadirPeliculas(HashSet<String> pelis) {
 		peliculas = pelis;
@@ -26,7 +28,6 @@ public class Standard extends Suscripcion implements Iker {
 			numTotalPelisExtras++;
 		}
 		totalPelis+=1;
-		//como sabes que pelicula es ? se lo pasas ?
 	}
 
 	@Override
@@ -39,6 +40,16 @@ public class Standard extends Suscripcion implements Iker {
 
 	public static int getNumTotalPelisExtras() {
 		return numTotalPelisExtras;
+	}
+
+
+
+	@Override
+	public boolean limitePantallas() {
+		if (numPantallas==dispositivos) {
+			return true;
+		}
+		return false;
 	}
 
 	

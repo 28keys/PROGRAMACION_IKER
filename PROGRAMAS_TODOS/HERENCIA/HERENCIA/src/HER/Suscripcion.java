@@ -9,10 +9,8 @@ public abstract class Suscripcion implements Iker {
 	private LocalDate fechaFinal;
 	private boolean conectado;
 	protected static int totalPelis;
-
 	protected int numPantallas;
 	protected static double totalRecaudado;
-
 	public Suscripcion(String mail, int contraseña, LocalDate fechaSuscrito) {
 		super();
 		this.mail = mail;
@@ -72,16 +70,20 @@ public abstract class Suscripcion implements Iker {
 	public abstract void verPelicula(String peli);
 
 	public abstract double cobrar();
+	
+	public abstract boolean limitePantallas();
 
 	@Override
 	public boolean conectar() {
 		conectado = true;
+		numPantallas++;
 		return conectado;
 	}
 
 	@Override
 	public boolean desconectar() {
 		conectado = false;
+		numPantallas--;
 		return conectado;
 	}
 

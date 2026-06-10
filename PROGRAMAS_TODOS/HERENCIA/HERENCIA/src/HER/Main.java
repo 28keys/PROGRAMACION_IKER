@@ -94,7 +94,8 @@ public class Main {
 						} else {
 							sc.nextLine();
 							System.out.println("Contraseña correcta");
-							if (encontradoSu.getFechaFinal().isBefore(LocalDate.now())) {
+							if (encontradoSu.getFechaFinal().isBefore(LocalDate.now())
+									|| encontradoSu.limitePantallas() == true) {
 								System.out.println("ERROR");
 							} else {
 								encontradoSu.conectar();
@@ -104,7 +105,8 @@ public class Main {
 							}
 						}
 					} else {
-						if (encontradoSu.getFechaFinal().isBefore(LocalDate.now())) {
+						if (encontradoSu.getFechaFinal().isBefore(LocalDate.now())
+								|| encontradoSu.limitePantallas() == true) {
 							System.out.println("ERROR");
 						} else {
 							encontradoSu.conectar();
@@ -133,29 +135,27 @@ public class Main {
 			case 4:
 				boolean renovado = false;
 				for (Suscripcion s : suscripciones) {
-					if (s.getFechaFinal().isBefore(LocalDate.now())) {
+					if (s.getFechaFinal().isAfter(LocalDate.now())) {
 						s.cobrar();
 
 						System.out.println("Quieres renovar tu suscripción?(S/N)");
 						String renovar = sc.nextLine();
 						if (renovar.equalsIgnoreCase("N")) {
-							System.out.println("Anota mail");
-							String correoE = sc.nextLine();
-
 							suscripciones.remove(s);
+							System.out.println("Suscripción cancelada");
 						} else {
-
 							LocalDate nuevaCaducidad = s.getFechaFinal().plusMonths(1);
-							// Actualiza la fecha
+							s.setFechaFinal(nuevaCaducidad);
+							System.out.println("Suscripción renovada!! :)");
 						}
 					}
 				}
-
 				break;
 			case 5:
 				System.out.println(suscripciones.toString());
 				System.out.println("Nº total de peliculas con coste extra :" + Standard.getNumTotalPelisExtras()
-						+ "\nNº total de peliculas sin coste extra " + (Suscripcion.totalPelis  - Standard.getNumTotalPelisExtras())+ "\nTotal recaudado :"
+						+ "\nNº total de peliculas sin coste extra "
+						+ (Suscripcion.totalPelis - Standard.getNumTotalPelisExtras()) + "\nTotal recaudado :"
 						+ Suscripcion.getTotalRecaudado());
 				break;
 
