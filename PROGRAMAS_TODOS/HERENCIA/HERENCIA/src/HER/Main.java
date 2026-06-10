@@ -72,51 +72,51 @@ public class Main {
 			case 2:
 				String email;
 				try {
-				System.out.println("Anota mail");
-				email = sc.nextLine();
-				Suscripcion encontradoSu = buscarMail(email, suscripciones);
-				if (encontradoSu == null) {
-					System.out.println("USUARIO NO ENCONTRADO");
-				}
-				if (encontradoSu.isConectado() == false) {
-					int cont = 0;
-					while (cont < 3) {
-						System.out.println("Introduce contraseña");
-						int passwd = sc.nextInt();
-						if (!(passwd == encontradoSu.getContraseña())) {
-							cont++;
-						} else {
-							break;
-						}
+					System.out.println("Anota mail");
+					email = sc.nextLine();
+					Suscripcion encontradoSu = buscarMail(email, suscripciones);
+					if (encontradoSu == null) {
+						System.out.println("USUARIO NO ENCONTRADO");
 					}
-					if (cont == 3) {
-						System.out.println("Intentos maximos superados");
+					if (encontradoSu.isConectado() == false) {
+						int cont = 0;
+						while (cont < 3) {
+							System.out.println("Introduce contraseña");
+							int passwd = sc.nextInt();
+							if (!(passwd == encontradoSu.getContraseña())) {
+								cont++;
+							} else {
+								break;
+							}
+						}
+						if (cont == 3) {
+							System.out.println("Intentos maximos superados");
+						} else {
+							sc.nextLine();
+							System.out.println("Contraseña correcta");
+							if (encontradoSu.getFechaFinal().isBefore(LocalDate.now())) {
+								System.out.println("ERROR");
+							} else {
+								encontradoSu.conectar();
+								System.out.println("Qué película vas a ver?");
+								String titulo = sc.nextLine();
+								encontradoSu.verPelicula(titulo);
+							}
+						}
 					} else {
-						sc.nextLine();
-						System.out.println("Contraseña correcta");
 						if (encontradoSu.getFechaFinal().isBefore(LocalDate.now())) {
 							System.out.println("ERROR");
 						} else {
 							encontradoSu.conectar();
 							System.out.println("Qué película vas a ver?");
-							String tiulo = sc.nextLine();
-							encontradoSu.verPelicula();
+							String titulo = sc.nextLine();
+							encontradoSu.verPelicula(titulo);
 						}
-					}
-				} else {
-					if (encontradoSu.getFechaFinal().isBefore(LocalDate.now())) {
-						System.out.println("ERROR");
-					} else {
-						encontradoSu.conectar();
-						System.out.println("Qué película vas a ver?");
-						String tiulo = sc.nextLine();
-						encontradoSu.verPelicula();
-					}
 
+					}
+				} catch (Exception e) {
+					e.getMessage();
 				}
-			} catch (Exception e) {
-				e.getMessage();
-			}
 
 				break;
 			case 3:
@@ -133,48 +133,29 @@ public class Main {
 			case 4:
 				boolean renovado = false;
 				for (Suscripcion s : suscripciones) {
-					s.cobrar();
-				}
-				System.out.println("Quieres renovar tu suscripción?(S/N)");
-				String renovar = sc.nextLine();
-				if (renovar.equalsIgnoreCase("N")) {
-					System.out.println("Anota mail");
-					String correoE = sc.nextLine();
-					Suscripcion eliminado = buscarMail(correoE, suscripciones);
-					suscripciones.remove(eliminado);
-				} else {
-					System.out.println("Anota mail");
-					String correoE = sc.nextLine();
-					Suscripcion suscriptor = buscarMail(correoE, suscripciones);
+					if (s.getFechaFinal().isBefore(LocalDate.now())) {
+						s.cobrar();
 
-					LocalDate nuevaCaducidad = suscriptor.getFechaFinal().plusMonths(1);
-					System.out.println("Deseas cambiar de suscripción? (S/N)");
-					String cambiar = sc.nextLine();
-					if (cambiar.equalsIgnoreCase("S")) {
-						if (suscriptor instanceof Prime) {
-							suscripciones.add(
-									new Standard(suscriptor.getMail(), suscriptor.getContraseña(), nuevaCaducidad));
-						} else {
-							suscripciones
-									.add(new Prime(suscriptor.getMail(), suscriptor.getContraseña(), nuevaCaducidad));
-						}
-					} else {
-						if (suscriptor instanceof Prime) {
-							suscripciones
-									.add(new Prime(suscriptor.getMail(), suscriptor.getContraseña(), nuevaCaducidad));
-						} else {
-							suscripciones.add(
-									new Standard(suscriptor.getMail(), suscriptor.getContraseña(), nuevaCaducidad));
-						}
+						System.out.println("Quieres renovar tu suscripción?(S/N)");
+						String renovar = sc.nextLine();
+						if (renovar.equalsIgnoreCase("N")) {
+							System.out.println("Anota mail");
+							String correoE = sc.nextLine();
 
+							suscripciones.remove(s);
+						} else {
+
+							LocalDate nuevaCaducidad = s.getFechaFinal().plusMonths(1);
+							// Actualiza la fecha
+						}
 					}
 				}
 
 				break;
 			case 5:
 				System.out.println(suscripciones.toString());
-				System.out.println("Nº total de peliculas con coste extra :" + Suscripcion.costeExtra
-						+ "\nNº total de peliculas sin coste extra " + Suscripcion.totalPelis + "\nTotal recaudado :"
+				System.out.println("Nº total de peliculas con coste extra :" + Standard.getNumTotalPelisExtras()
+						+ "\nNº total de peliculas sin coste extra " + (Suscripcion.totalPelis  - Standard.getNumTotalPelisExtras())+ "\nTotal recaudado :"
 						+ Suscripcion.getTotalRecaudado());
 				break;
 
