@@ -14,7 +14,7 @@ public class Normal extends Persona {
 		} else if (edad >= 18) {
 			total = 4;
 		}
-
+		totalRecaudado+=total;
 		return total;
 	}
 

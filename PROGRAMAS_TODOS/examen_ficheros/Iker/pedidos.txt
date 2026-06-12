@@ -1,0 +1,9 @@
+15,25,reform27,Madrid
+2,50.4,ducha9,Sevilla
+32,29.6,hospaz26,Madrid
+4,50,reform27,Madrid
+52,40,ducha9,Sevilla
+6,70,petrus68,Barcelona
+73,50.4,reform27,Sevilla
+3,60.5,derrib13,Barcelona
+34,28.5,petrus68,Barcelona

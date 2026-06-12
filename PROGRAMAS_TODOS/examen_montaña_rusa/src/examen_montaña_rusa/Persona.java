@@ -3,7 +3,7 @@ package examen_montaña_rusa;
 public abstract class Persona {
 	protected int edad;
 	private int altura;
-
+	protected static double totalRecaudado;
 	public Persona(int edad, int altura) {
 		super();
 		this.edad = edad;

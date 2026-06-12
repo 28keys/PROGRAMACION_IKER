@@ -11,6 +11,7 @@ public class Codigo extends Persona {
 	@Override
 	public double pagar() {
 		double total = Double.parseDouble((codigo.substring(codigo.length() - 2)));
+		totalRecaudado += total;
 		return total;
 	}
 

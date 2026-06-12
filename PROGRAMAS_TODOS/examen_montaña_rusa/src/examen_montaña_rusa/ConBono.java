@@ -1,11 +1,15 @@
 package examen_montaña_rusa;
 
 public class ConBono extends Persona {
-	private int viajes = 3;
+	protected int viajes = 3;
 
 	public ConBono(int edad, int altura) {
 		super(edad, altura);
 
+	}
+
+	public int getViajes() {
+		return viajes;
 	}
 
 	@Override
@@ -19,7 +23,7 @@ public class ConBono extends Persona {
 			}
 		}
 		viajes--;
-
+		totalRecaudado+=total;
 		return total;
 	}
 
