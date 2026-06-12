@@ -1,0 +1,2 @@
+Error al leer la fecha en la linea 3768PSS,05-06-2010,150,57381920T
+No se ha encontrado al propietario con DNI : 67676767C en la linea 0349LKK,2024-12-19,775.6,67676767C

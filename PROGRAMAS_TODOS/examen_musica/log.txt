@@ -1,0 +1,12 @@
+Error en la linea :juan24@gmail.com,tipo(patata),2026-02-15,6
+2026-06-11T23:32:15.971269700
+Error en la linea :juan24@gmail.com,tipo(patata),2026-02-15,6
+2026-06-11T23:32:32.937927300
+Error en la linea :juan24@gmail.com,tipo(patata),2026-02-15,6
+2026-06-11T23:32:42.489185700
+Error en la linea :juan24@gmail.com,tipo(patata),2026-02-15,6
+2026-06-11T23:57:01.002356900
+Error en la linea :juan24@gmail.com,tipo(patata),2026-02-15,6
+2026-06-12T00:05:33.133378100
+Error en la linea :juan24@gmail.com,tipo(patata),2026-02-15,6
+2026-06-12T00:06:03.673033700

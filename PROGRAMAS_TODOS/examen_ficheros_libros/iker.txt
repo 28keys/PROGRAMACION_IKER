@@ -1,0 +1,3 @@
+Titulo:'Rubius en Japon' autor:Ruben Doblas
+Titulo:'La Odisea' autor:Homero
+Titulo:'Ulises' autor:James Joyce

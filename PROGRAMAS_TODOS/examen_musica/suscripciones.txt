@@ -1,0 +1,3 @@
+charlie278@gmail.com,tipo(premium),2020-11-03,2
+juan24@gmail.com,tipo(patata),2026-02-15,6
+iker2808romero@gmail.com,tipo(basica),2025-04-17,4
