@@ -11,4 +11,23 @@ public class Comision extends Comercial {
 		this.acuerdoMarca = acuerdoMarca;
 	}
 
+	@Override
+	public String toString() {
+		return "Comision [acuerdoMarca=" + acuerdoMarca + "\n" + super.toString();
+	}
+
+	@Override
+	public double pagar() {
+		double importe = 0;
+		for (String clave : unidades.keySet()) {
+			int unid = unidades.get(clave);
+			if (clave.equals(acuerdoMarca)) {
+				importe += (unid / 5) * 20;
+			}
+			importe += unid * 10;
+		}
+		ganado+=importe;
+		return importe;
+	}
+
 }

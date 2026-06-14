@@ -133,7 +133,6 @@ public class Main {
 				}
 				break;
 			case 4:
-				boolean renovado = false;
 				for (Suscripcion s : suscripciones) {
 					if (s.getFechaFinal().isAfter(LocalDate.now())) {
 						s.cobrar();
